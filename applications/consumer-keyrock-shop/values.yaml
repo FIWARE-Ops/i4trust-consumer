@@ -274,8 +274,8 @@ initScript:
     id: one
     dbName: i4t_consumer_shop_idm
     issuer: "EU.EORI.DECONSUMERONE"
-    notBefore: 1616583866
-    notOnOrAfter: 1735817171
+    notBefore: "1616583866"
+    notOnOrAfter: "1735817171"
     user:
       - username: "user_prime"
         isPrime: true
