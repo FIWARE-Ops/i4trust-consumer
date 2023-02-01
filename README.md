@@ -1,9 +1,6 @@
-# i4trust-consumer
-App-of-apps of an i4Trust service consumer organisation
-
 # i4Trust Consumer Demonstrator
 
-App-of-apps for an i4trust data service consumer (e.g., Happy Pets).
+App-of-apps for an i4trust data service consumer organisation (e.g., Happy Pets).
 
 > :bulb: This repository just provides a setup for temporary demonstration purposes. It is not recommended to be used in a production enviroment. Credentials are visible in clear text and are not encrypted. Installations should be deleted when demonstrations/presentations/etc. have finished. 
 
