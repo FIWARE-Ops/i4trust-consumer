@@ -10,53 +10,56 @@ data:
   create.sh: |-
     mysql -h {{ .Values.keyrock.db.host }} -u {{ .Values.keyrock.db.user }} -p$DB_PASSWORD {{ .Values.initScript.createPolicies.dbName }} <<EOF
 
-    {{- range $v := .Values.initScript.createPolicies.user }}
-    SET @userid := (select id from user where username = '{{ $v.username }}');
-
     SET @rules := JSON_ARRAY(
       JSON_OBJECT(
         "effect", "Permit"
       )
     );
 
+    {{- range $v := .Values.initScript.createPolicies.user }}
+    -- Create policies for user: {{ $v.username }}
+    SET @userid := (select id from user where username = '{{ $v.username }}');
+
     {{- if $v.isPrime -}}
+    
     SET @policies := JSON_ARRAY(
-      JSON_UNQUOTE(JSON_OBJECT(
-        "rules", @rules,
-        "target", JSON_UNQUOTE(JSON_OBJECT(
+      JSON_OBJECT(
+        "rules", CAST(@rules as JSON),
+        "target", JSON_OBJECT(
           "actions", JSON_ARRAY("PATCH"),
-          "resource", JSON_UNQUOTE(JSON_OBJECT(
+          "resource", JSON_OBJECT(
             "type", "DELIVERYORDER",
             "attributes", JSON_ARRAY("pta","pda"),
             "identifiers", JSON_ARRAY({{ $v.entityId | quote }})
-          ))
-        ))
-      )),
-      JSON_UNQUOTE(JSON_OBJECT(
-        "rules", @rules,
-        "target", JSON_UNQUOTE(JSON_OBJECT(
+          )
+        )
+      ),
+      JSON_OBJECT(
+        "rules", CAST(@rules as JSON),
+        "target", JSON_OBJECT(
           "actions", JSON_ARRAY("GET"),
-          "resource", JSON_UNQUOTE(JSON_OBJECT(
+          "resource", JSON_OBJECT(
             "type", "DELIVERYORDER",
             "attributes", JSON_ARRAY("*"),
             "identifiers", JSON_ARRAY({{ $v.entityId | quote }})
-          ))
-        ))
-      ))
+          )
+        )
+      )
     );
     {{- else }}
+    
     SET @policies := JSON_ARRAY(
-      JSON_UNQUOTE(JSON_OBJECT(
-        "rules", @rules,
-        "target", JSON_UNQUOTE(JSON_OBJECT(
+      JSON_OBJECT(
+        "rules", CAST(@rules as JSON),
+        "target", JSON_OBJECT(
           "actions", JSON_ARRAY("GET"),
-          "resource", JSON_UNQUOTE(JSON_OBJECT(
+          "resource", JSON_OBJECT(
             "type", "DELIVERYORDER",
             "attributes", JSON_ARRAY("*"),
             "identifiers", JSON_ARRAY({{ $v.entityId | quote }})
-          ))
-        ))
-      ))
+          )
+        )
+      )
     );
     {{- end }}
 
@@ -74,7 +77,7 @@ data:
               "licenses", JSON_ARRAY("ISHARE.0001")
             )
           ),
-          "policies", @policies
+          "policies", CAST(@policies as JSON)
         )
       )
     );
