@@ -74,7 +74,7 @@ data:
               "licenses", JSON_ARRAY("ISHARE.0001")
             )
           ),
-          "policies", JSON_ARRAY(@policies)
+          "policies", @policies
         )
       )
     );
