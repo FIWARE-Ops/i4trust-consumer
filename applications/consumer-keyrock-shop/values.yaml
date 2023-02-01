@@ -77,7 +77,7 @@ keyrock:
     - name: DEBUG
       value: "*"
     - name: IDM_DB_NAME
-      value: i4t_consumer_idm
+      value: i4t_consumer_shop_idm
     - name: IDM_DB_SEED
       value: "true"
     - name: IDM_EMAIL_HOST
@@ -269,6 +269,20 @@ initScript:
       - username: "user_standard"
         email: "steve.standard@mymail.com"
         password: "standard"
-
+  createPolicies:
+    enabled: true
+    id: one
+    dbName: i4t_consumer_shop_idm
+    issuer: "EU.EORI.DECONSUMERONE"
+    notBefore: 1616583866
+    notOnOrAfter: 1735817171
+    user:
+      - username: "user_prime"
+        isPrime: true
+        entityId: "urn:ngsi-ld:DELIVERYORDER:HAPPYPETS001"
+      - username: "user_standard"
+        isPrime: false
+        entityId: "urn:ngsi-ld:DELIVERYORDER:HAPPYPETS002"
+        
     
   

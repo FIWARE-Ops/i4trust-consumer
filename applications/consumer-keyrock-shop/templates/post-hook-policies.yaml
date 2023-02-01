@@ -1,0 +1,28 @@
+{{- if .Values.initScript.createPolicies.enabled -}}
+apiVersion: v1
+kind: Pod
+metadata:
+  name: consumer-shop-policy-{{ randAlphaNum 5 | lower }}
+  annotations:
+    "helm.sh/hook": post-upgrade
+    "helm.sh/hook-delete-policy": before-hook-creation
+    "helm.sh/hook-weight": "2"
+spec:
+  containers:
+    - name: policy-create
+      image: mysql:5.7
+      command: 
+        - /bin/sh
+        - /scripts/create.sh
+      volumeMounts:
+        - name: scripts
+          mountPath: /scripts
+      env:
+        - name: DB_PASSWORD
+          value: dbPassword
+  volumes:
+    - name: scripts
+      configMap:
+        name: consumer-shop-{{ .Values.initScript.createPolicies.id }}-policy-cm
+  restartPolicy: Never
+{{- end }}

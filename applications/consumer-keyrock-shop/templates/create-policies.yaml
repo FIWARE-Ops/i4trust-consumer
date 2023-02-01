@@ -1,0 +1,25 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: consumer-shop-{{ .Values.initScript.createPolicies.id }}-policy-cm
+  annotations:
+    "helm.sh/hook": post-upgrade
+    "helm.sh/hook-delete-policy": before-hook-creation
+    "helm.sh/hook-weight": "2"
+data:
+  create.sh: |-
+    mysql -h {{ .Values.keyrock.db.host }} -u {{ .Values.keyrock.db.user }} -p$DB_PASSWORD {{ .Values.initScript.createPolicies.dbName }} <<EOF
+
+    {{- range $v := .Values.initScript.createPolicies.user }}
+    SET @userid := (select id from user where username = '{{ $v.username }}');
+
+    {{- if $v.isPrime -}}
+    INSERT IGNORE INTO delegation_evidence (policy_issuer, access_subject,policy) VALUES ({{ $.Values.initScript.createPolicies.issuer | quote }}, '@userid', '{"target": {"accessSubject": "@userid" }, "notBefore": {{ $.Values.initScript.createPolicies.notBefore }}, "policySets": [{"target": {"environment": {"licenses": ["ISHARE.0001"]}}, "policies": [{"rules": [{"effect": "Permit"}], "target": {"actions": ["PATCH"], "resource": {"type": "DELIVERYORDER", "attributes": ["pta","pda"], "identifiers": [{{ $v.entityId | quote }}]}}},{"rules": [{"effect": "Permit"}], "target": {"actions": ["GET"], "resource": {"type": "DELIVERYORDER", "attributes": ["*"], "identifiers": [{{ $v.entityId | quote }}]}}}]}], "notOnOrAfter": {{ $.Values.initScript.createPolicies.notOnOrAfter }}, "policyIssuer": {{ $.Values.initScript.createPolicies.issuer | quote }} }');
+    {{- else }}
+    INSERT IGNORE INTO delegation_evidence (policy_issuer, access_subject,policy) VALUES ({{ $.Values.initScript.createPolicies.issuer | quote }}, '@userid', '{"target": {"accessSubject": "@userid" }, "notBefore": {{ $.Values.initScript.createPolicies.notBefore }}, "policySets": [{"target": {"environment": {"licenses": ["ISHARE.0001"]}}, "policies": [{"rules": [{"effect": "Permit"}], "target": {"actions": ["GET"], "resource": {"type": "DELIVERYORDER", "attributes": ["*"], "identifiers": [{{ $v.entityId | quote }}]}}}]}], "notOnOrAfter": {{ $.Values.initScript.createPolicies.notOnOrAfter }}, "policyIssuer": {{ $.Values.initScript.createPolicies.issuer | quote }} }');
+    {{- end }}
+    
+    {{- end }}
+    
+    COMMIT;
+    EOF
