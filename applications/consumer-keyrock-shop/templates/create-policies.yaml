@@ -21,42 +21,42 @@ data:
 
     {{- if $v.isPrime -}}
     SET @policies := JSON_ARRAY(
-      JSON_OBJECT(
+      JSON_UNQUOTE(JSON_OBJECT(
         "rules", @rules,
-        "target", JSON_OBJECT(
+        "target", JSON_UNQUOTE(JSON_OBJECT(
           "actions", JSON_ARRAY("PATCH"),
-          "resource", JSON_OBJECT(
+          "resource", JSON_UNQUOTE(JSON_OBJECT(
             "type", "DELIVERYORDER",
             "attributes", JSON_ARRAY("pta","pda"),
             "identifiers", JSON_ARRAY({{ $v.entityId | quote }})
-          )
-        )
-      ),
-      JSON_OBJECT(
+          ))
+        ))
+      )),
+      JSON_UNQUOTE(JSON_OBJECT(
         "rules", @rules,
-        "target", JSON_OBJECT(
+        "target", JSON_UNQUOTE(JSON_OBJECT(
           "actions", JSON_ARRAY("GET"),
-          "resource", JSON_OBJECT(
+          "resource", JSON_UNQUOTE(JSON_OBJECT(
             "type", "DELIVERYORDER",
             "attributes", JSON_ARRAY("*"),
             "identifiers", JSON_ARRAY({{ $v.entityId | quote }})
-          )
-        )
-      )
+          ))
+        ))
+      ))
     );
     {{- else }}
     SET @policies := JSON_ARRAY(
-      JSON_OBJECT(
+      JSON_UNQUOTE(JSON_OBJECT(
         "rules", @rules,
-        "target", JSON_OBJECT(
+        "target", JSON_UNQUOTE(JSON_OBJECT(
           "actions", JSON_ARRAY("GET"),
-          "resource", JSON_OBJECT(
+          "resource", JSON_UNQUOTE(JSON_OBJECT(
             "type", "DELIVERYORDER",
             "attributes", JSON_ARRAY("*"),
             "identifiers", JSON_ARRAY({{ $v.entityId | quote }})
-          )
-        )
-      )
+          ))
+        ))
+      ))
     );
     {{- end }}
 
