@@ -260,7 +260,7 @@ keyrock:
 ## Init scripts for Keyrock
 initScript:
   createUser:
-    enabled: true
+    userEnabled: true
     id: one
     user:
       - username: "consumer-operator"

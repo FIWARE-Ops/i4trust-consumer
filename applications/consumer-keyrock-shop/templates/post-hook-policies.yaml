@@ -1,4 +1,4 @@
-{{- if .Values.initScript.createPolicies.enabled -}}
+{{- if .Values.initScript.createPolicies.policiesEnabled -}}
 apiVersion: v1
 kind: Pod
 metadata:

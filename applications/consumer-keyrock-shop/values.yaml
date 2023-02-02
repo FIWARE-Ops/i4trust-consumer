@@ -260,7 +260,7 @@ keyrock:
 ## Init scripts for Keyrock
 initScript:
   createUser:
-    enabled: true
+    userEnabled: true
     id: one
     user:
       - username: "user_prime"
@@ -270,7 +270,7 @@ initScript:
         email: "steve.standard@mymail.com"
         password: "standard"
   createPolicies:
-    enabled: true
+    policiesEnabled: true
     id: one
     dbName: i4t_consumer_shop_idm
     issuer: "EU.EORI.DECONSUMERONE"
