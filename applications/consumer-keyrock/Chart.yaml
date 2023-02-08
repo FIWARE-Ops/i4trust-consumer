@@ -1,5 +1,5 @@
 apiVersion: v2
-name: pdc-keyrock
+name: consumer-keyrock
 description: Chart holder for argo-cd
 
 type: application

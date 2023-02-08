@@ -4,6 +4,7 @@
 source: https://github.com/FIWARE-Ops/i4trust-consumer
 release: i4t-consumer-demo
 destination_namespace: &destination i4t-consumer-demo
+purpose: &purpose i4trust-demonstrator-env
 branch: &branch main
 secretsEnabled: &secretsEnabled false
 
@@ -13,6 +14,15 @@ applications:
     source_path: applications/mysql
     source_ref: *branch
     destination: *destination
+    helm_values:
+    - values.yaml
+
+  - name: postgresql
+    enabled: true
+    source_path: applications/postgresql
+    source_ref: *branch
+    destination: *destination
+    purpose: *purpose
     helm_values:
     - values.yaml
 
