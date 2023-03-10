@@ -72,15 +72,15 @@ applications:
           value: "http://consumer-waltid-vcwaltid"
         - name: VCISSUER_ISSUER_KEY_FILE
           value: /opt/keys/keyfile.json
-        extraVolumes:
-          - name: profiles
-            configMap:
-              name: consumer-keycloak-hp-profile
-          - name: issuer-key
-            configMap:
-              name: consumer-keycloak-hp-key
-          - name: providers
-            emptyDir: {}
+      extraVolumes:
+        - name: profiles
+          configMap:
+            name: consumer-keycloak-hp-profile
+        - name: issuer-key
+          configMap:
+            name: consumer-keycloak-hp-key
+        - name: providers
+          emptyDir: {}
 
   - name: consumer-keyrock
     enabled: true
