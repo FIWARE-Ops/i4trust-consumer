@@ -26,6 +26,47 @@ applications:
     helm_values:
     - values.yaml
 
+  - name: consumer-waltid
+    enabled: true
+    source_path: applications/consumer-waltid
+    source_ref: *branch
+    destination: *destination
+    purpose: *purpose
+    helm_values:
+    - values.yaml
+
+  - name: consumer-keycloak
+    enabled: true
+    source_path: applications/consumer-keycloak
+    source_ref: *branch
+    destination: *destination
+    purpose: *purpose
+    helm_values:
+    - values.yaml
+    values:
+      realm:
+        id: hp
+        displayName: "Keycloak Consumer"
+        displayNameHtml: "<div class=\"kc-logo-text\"><span>Keycloak</span></div>"
+        user:
+          - username: max.prime
+            email: max.prime@mymail.com
+            password: prime
+            - username: steve.standard
+              email: steve.standard@mymail.com
+              password: standard
+        frontend:
+          url: https://consumer-keycloak-i4t-consumer-main.apps.fiware.fiware.dev
+      keycloak:
+        keycloakConfigCli:
+          existingConfigmap: consumer-keycloak-hp-realm
+        extraVolumes:
+          - name: profiles
+            configMap:
+              name: consumer-keycloak-hp-profile
+          - name: providers
+            emptyDir: {}
+
   - name: consumer-keyrock
     enabled: true
     source_path: applications/consumer-keyrock
