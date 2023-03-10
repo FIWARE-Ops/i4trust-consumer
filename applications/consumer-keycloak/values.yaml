@@ -8,7 +8,7 @@ realm:
   id: hp
   displayName: "Keycloak Consumer"
   displayNameHtml: "<div class=\"kc-logo-text\"><span>Keycloak</span></div>"
-  did: "did:key:abc"
+  #did: "did:key:abc"
   user:
     - username: max.prime
       email: max.prime@mymail.com

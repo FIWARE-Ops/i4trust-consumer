@@ -27,6 +27,7 @@ data:
           }
         ],
         "client": {
+          {{- if .Values.realm.did -}}
           {{ .Values.realm.did | quote }}: [
             {
               "name": "STANDARD_CUSTOMER",
@@ -39,6 +40,7 @@ data:
               "clientRole": true
             }
           ],
+          {{- end }}
           "orion-pep": [
             {
               "name": "admin",
@@ -92,10 +94,12 @@ data:
             }
           ],
           "clientRoles": {
+            {{- if .Values.realm.did -}}
             {{ .Values.realm.did | quote }}: [
               "STANDARD_CUSTOMER",
               "GOLD_CUSTOMER"
             ],
+            {{- end }}
             "account": [
               "view-profile",
               "manage-account"
@@ -130,6 +134,7 @@ data:
         {{- end }}
       ],
       "clients": [
+        {{- if .Values.realm.did -}}
         {
           "clientId": {{ .Values.realm.did | quote }},
           "enabled": true,
@@ -162,6 +167,7 @@ data:
           "defaultClientScopes": [],
           "optionalClientScopes": []
         },
+        {{- end }}
         {
           "clientId": "orion-pep",
           "adminUrl": "{{ .Values.realm.orionPep.adminUrl }}",
