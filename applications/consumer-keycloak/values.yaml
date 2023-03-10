@@ -8,7 +8,7 @@ realm:
   id: hp
   displayName: "Keycloak Consumer"
   displayNameHtml: "<div class=\"kc-logo-text\"><span>Keycloak</span></div>"
-  #did: "did:key:abc"
+  did: "did:key:z6MkpMwCqXiva7WiqDuiDtThG6SAupwUVmpeaYrbF7KQHB8v"
   user:
     - username: max.prime
       email: max.prime@mymail.com
@@ -70,12 +70,12 @@ keycloak:
     value: "true"
   - name: KEYCLOAK_LOG_LEVEL
     value: INFO
-  #- name: VCISSUER_ISSUER_DID
-  #  value: "did:key:abc"
+  - name: VCISSUER_ISSUER_DID
+    value: "did:key:z6MkpMwCqXiva7WiqDuiDtThG6SAupwUVmpeaYrbF7KQHB8v"
   - name: VCISSUER_WALTID_ADDRESS
     value: "http://consumer-waltid-vcwaltid"
-  #- name: VCISSUER_ISSUER_KEY_FILE
-  #  value: /opt/keys/keyfile.json
+  - name: VCISSUER_ISSUER_KEY_FILE
+    value: /opt/keys/keyfile.json
 
 
   extraVolumeMounts:
@@ -84,8 +84,8 @@ keycloak:
       subPath: profile.properties
     - name: providers
       mountPath: /opt/bitnami/keycloak/providers/
-    #- name: issuer-key
-    #  mountPath: /opt/keys
+    - name: issuer-key
+      mountPath: /opt/keys
 
   extraVolumes:
     - name: profiles
@@ -93,9 +93,9 @@ keycloak:
         name: consumer-keycloak-hp-profile
     - name: providers
       emptyDir: {}
-    #- name: issuer-key
-    #  configMap:
-    #    name: keycloak-one-key
+    - name: issuer-key
+      configMap:
+        name: consumer-keycloak-hp-key
 
 
   initContainers:
