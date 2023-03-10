@@ -52,9 +52,9 @@ applications:
           - username: max.prime
             email: max.prime@mymail.com
             password: prime
-            - username: steve.standard
-              email: steve.standard@mymail.com
-              password: standard
+          - username: steve.standard
+            email: steve.standard@mymail.com
+            password: standard
         frontend:
           url: https://consumer-keycloak-i4t-consumer-main.apps.fiware.fiware.dev
       keycloak:
