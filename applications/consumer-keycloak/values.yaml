@@ -111,6 +111,6 @@ keycloak:
 
   externalDatabase:
     host: postgresql
-    user: keycloak
+    user: postgres
     database: i4t_consumer_kc
-    password: dbPassword
+    password: dbRootPassword
