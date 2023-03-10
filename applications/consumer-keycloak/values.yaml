@@ -91,13 +91,12 @@ keycloak:
     - name: profiles
       configMap:
         name: consumer-keycloak-hp-profile
-    - name: providers
-      emptyDir: {}
     - name: issuer-key
       configMap:
         name: consumer-keycloak-hp-key
-
-
+    - name: providers
+      emptyDir: {}
+    
   initContainers:
     - name: add-vc-issuer
       image: quay.io/fiware/keycloak-vc-issuer:0.3.1
