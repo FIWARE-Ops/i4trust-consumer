@@ -122,6 +122,11 @@ data:
             }
           ],
           "clientRoles": {
+            {{- if .Values.realm.did -}}
+            {{ .Values.realm.did | quote }}: [
+              {{ $u.role | quote }},
+            ],
+            {{- end }}
             "account": [
               "view-profile",
               "manage-account"
