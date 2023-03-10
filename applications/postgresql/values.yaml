@@ -20,4 +20,4 @@ postgresql:
     initdb:
       scripts:
         create.sh: |
-          psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE i4t_consumer_kc;"
+          psql postgresql://postgres:dbRootPassword@localhost:5432 -c "CREATE DATABASE i4t_consumer_kc;"
