@@ -73,7 +73,7 @@ keycloak:
   #- name: VCISSUER_ISSUER_DID
   #  value: "did:key:abc"
   - name: VCISSUER_WALTID_ADDRESS
-    value: "http://consumer-waltid"
+    value: "http://consumer-waltid-vcwaltid"
   #- name: VCISSUER_ISSUER_KEY_FILE
   #  value: /opt/keys/keyfile.json
 
