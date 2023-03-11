@@ -58,11 +58,14 @@ Different accounts are created automatically with default passwords.
 | Keyrock Consumer Shop | admin@test.com | admin | Admin user of the Consumer Shop Keyrock IDP |
 | Keyrock Consumer Shop | max.prime@mymail.com | prime | Prime user of the Consumer shop system |
 | Keyrock Consumer Shop | steve.standard@mymail.com | standard | Standard user of the Consumer shop system |
+| Keycloak Consumer Admin Console | fiwareAdmin | fiwareAdmin | Admin user of the Consumer Keycloak |
+| Keycloak Consumer | max.prime@mymail.com | prime | Prime user of the Consumer Keycloak |
+| Keycloak Consumer | steve.standard@mymail.com | standard | Standard user of the Consumer Keycloak |
 
 Root CA, keys and certificates have been created and self-signed using openssl. Keys and certificates used for this demonstrator 
 can be found in the [certs folder](./certs). These should never be used in any kind of production enviroment or on a 
 contineously running environment.  
-Below table displays the assigned EORIs assigned to the different organisations and their keys/certificates:
-| Organisation           | EORI                       |
-|------------------------|----------------------------|
-| Consumer               | EU.EORI.DECONSUMERONE      |
+Below table displays the assigned EORIs and DIDs assigned to the different organisations and their keys/certificates:
+| Organisation           | EORI                       | DID                                    |
+|------------------------|----------------------------|----------------------------------------|
+| Consumer               | EU.EORI.DECONSUMERONE      | did:key:z6MkpMwCqXiva7WiqDuiDtThG6SAupwUVmpeaYrbF7KQHB8v |
