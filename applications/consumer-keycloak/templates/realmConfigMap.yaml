@@ -115,6 +115,12 @@ data:
           "username": {{ $u.username | quote }},
           "enabled": true,
           "email": {{ $u.email | quote }},
+          {{- if $u.firstName -}}
+          "firstName": {{ $u.firstName | quote }},   
+          {{- end }}
+          {{- if $u.lastName -}}
+          "lastName": {{ $u.lastName | quote }},   
+          {{- end }}      
           "credentials": [
             {
               "type": "password",
