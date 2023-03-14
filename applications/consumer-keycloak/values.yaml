@@ -23,10 +23,14 @@ realm:
       email: max.prime@mymail.com
       password: prime
       role: "GOLD_CUSTOMER"
+      firstName: Max
+      lastName: Prime
     - username: steve.standard
       email: steve.standard@mymail.com
       password: standard
       role: "STANDARD_CUSTOMER"
+      firstName: Steve
+      lastName: Standard
   frontend:
     url: https://consumer-keycloak-i4t-consumer-main.apps.fiware.fiware.dev
   orionPep:
