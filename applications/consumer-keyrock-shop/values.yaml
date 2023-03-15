@@ -7,10 +7,8 @@ keyrock:
       pullPolicy: IfNotPresent
     livenessProbe:
       initialDelaySeconds: 60
-      successThreshold: 2
     readinessProbe:
       initialDelaySeconds: 61
-      successThreshold: 2
 
   db:
     user: root
