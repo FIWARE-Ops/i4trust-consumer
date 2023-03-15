@@ -5,6 +5,12 @@ keyrock:
       tag: 8.3.0
       #pullPolicy: Always
       pullPolicy: IfNotPresent
+    livenessProbe:
+      initialDelaySeconds: 60
+      successThreshold: 2
+    readinessProbe:
+      initialDelaySeconds: 61
+      successThreshold: 2
 
   db:
     user: root
