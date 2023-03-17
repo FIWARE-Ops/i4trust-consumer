@@ -130,8 +130,8 @@ data:
           "clientRoles": {
             {{- if $.Values.realm.did -}}
             {{ $.Values.realm.did | quote }}: [
-              {{- range $u.roles }}
-              {{ . | quote }},
+              {{- $rk, $r := range $u.roles }}
+              {{ $r | quote }},
               {{- end }}
             ],
             {{- end }}
