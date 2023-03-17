@@ -110,7 +110,7 @@ data:
             "/consumer"
           ]
         },
-        {{- range $key, $u := .Values.realm.user }}
+        {{- range $uk, $u := .Values.realm.user }}
         {
           "username": {{ $u.username | quote }},
           "enabled": true,
@@ -130,9 +130,7 @@ data:
           "clientRoles": {
             {{- if $.Values.realm.did -}}
             {{ $.Values.realm.did | quote }}: [
-              {{- range $rk, $r := $u.roles }}
-              {{ $r | quote }},
-              {{- end }}
+              {{ $u.role }}
             ],
             {{- end }}
             "account": [
