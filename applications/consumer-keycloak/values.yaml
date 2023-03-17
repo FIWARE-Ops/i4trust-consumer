@@ -22,14 +22,14 @@ realm:
     - username: max.prime
       email: max.prime@mymail.com
       password: prime
-      role: >
+      role: >-
         "GOLD_CUSTOMER", "STANDARD_CUSTOMER"
       firstName: Max
       lastName: Prime
     - username: steve.standard
       email: steve.standard@mymail.com
       password: standard
-      role: >
+      role: >-
         "STANDARD_CUSTOMER"
       firstName: Steve
       lastName: Standard
