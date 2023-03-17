@@ -57,11 +57,13 @@ applications:
           - username: max.prime
             email: max.prime@mymail.com
             password: prime
-            role: "GOLD_CUSTOMER"
+            roles: |
+              "GOLD_CUSTOMER", "STANDARD_CUSTOMER"
           - username: steve.standard
             email: steve.standard@mymail.com
             password: standard
-            role: "STANDARD_CUSTOMER"
+            roles: |
+              "STANDARD_CUSTOMER"
         frontend:
           url: https://consumer-keycloak-i4t-consumer-main.apps.fiware.fiware.dev
       keycloak:
