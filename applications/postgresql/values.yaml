@@ -1,4 +1,8 @@
 postgresql:
+  image:
+    registry: quay.io
+    repository: i4trust/postgresql
+    tag: 15.1.0-debian-11-r30
   fullnameOverride: postgresql
   auth:
     username: keycloak

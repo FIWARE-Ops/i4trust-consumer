@@ -12,7 +12,7 @@ issuerKey:
   kid: "z6MkigCEnopwujz8Ten2dzq91nvMjqbKQYcifuZhqBsEkH7g"
   x: "Pr7-Zath5ZMyvikX93LzsJNkl6HcAAJdgrwlBTSE6gs"
   alg: "EdDSA"
-    
+
 realm:
   id: hp
   displayName: "Keycloak Consumer"
@@ -30,7 +30,7 @@ realm:
       email: steve.standard@mymail.com
       password: standard
       roles: |
-        "STANDARD_CUSTOMERRR"
+        "STANDARD_CUSTOMER"
       firstName: Steve
       lastName: Standard
   frontend:
@@ -44,6 +44,11 @@ realm:
       - https://orion-ld/
 
 keycloak:
+  image:
+    registry: quay.io
+    repository: i4trust/keycloak
+    tag: 20.0.3-debian-11-r9
+  
   service:
     type: ClusterIP
   logging:
